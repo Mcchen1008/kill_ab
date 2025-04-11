@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>坑艾本 - 我的世界恶作剧大全</title>
+    <style>
+        /* 全局样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* 导航栏样式 */
+        nav {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+        
+        .nav-links a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .nav-links a.active {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        /* 主要内容区域 */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            min-height: calc(100vh - 200px);
+        }
+        
+        /* 页脚样式 */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1.5rem 0;
+            margin-top: 2rem;
+        }
+        
+        /* 主页内容样式 */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1607513746994-51f730a44832?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .content-section {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+        }
+        
+        .content-section h2 {
+            color: #6a11cb;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #eee;
+        }
+        
+        /* 指令卡片样式 */
+        .command-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .command-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .command-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .command-card h3 {
+            color: #2575fc;
+            margin-bottom: 0.5rem;
+        }
+        
+        .command-card code {
+            display: block;
+            background-color: #f5f5f5;
+            padding: 0.5rem;
+            border-radius: 4px;
+            font-family: monospace;
+            margin: 0.5rem 0;
+            overflow-x: auto;
+        }
+        
+        /* 每天10坑艾本页面样式 */
+        .trick-list {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .trick-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .trick-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .trick-item h3 {
+            color: #6a11cb;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* 关于页面样式 */
+        .about-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+        
+        .about-content img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1.5rem;
+            border: 5px solid #6a11cb;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            
+            .nav-links {
+                margin-top: 1rem;
+            }
+            
+            .nav-links li {
+                margin-left: 1rem;
+                margin-right: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .command-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo" onclick="showPage('home')">坑艾本</a>
+            <ul class="nav-links">
+                <li><a href="#" class="active" onclick="showPage('home')">主页</a></li>
+                <li><a href="#" onclick="showPage('tricks')">每天10坑艾本</a></li>
+                <li><a href="#" onclick="showPage('about')">关于</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- 主页内容 -->
+    <div class="container" id="home-page">
+        <div class="hero">
+            <h1>我的世界1.19 JAVA版坑人指南</h1>
+            <p>专为艾本同学量身定制的恶作剧指令大全</p>
+        </div>
+        
+        <div class="content-section">
+            <h2>热门坑人指令</h2>
+            <p>以下是一些在我的世界1.19 JAVA版中可以用来坑艾本的有趣指令：</p>
+            
+            <div class="command-cards">
+                <div class="command-card">
+                    <h3>无限闪电</h3>
+                    <p>让艾本走到哪都被雷劈</p>
+                    <code>/execute at ab run summon minecraft:lightning_bolt</code>
+                </div>
+                
+                <div class="command-card">
+                    <h3>隐形苦力怕</h3>
+                    <p>在艾本周围生成隐形苦力怕</p>
+                    <code>/execute at ab run summon minecraft:creeper ~ ~ ~ {ActiveEffects:[{Id:14,Duration:999999,Amplifier:1,ShowParticles:0b}]}</code>
+                </div>
+                
+                <div class="command-card">
+                    <h3>无限掉落</h3>
+                    <p>让艾本一直往下掉</p>
+                    <code>/execute as ab at @s run tp @s ~ ~-1 ~</code>
+                </div>
+                
+                <div class="command-card">
+                    <h3>物品消失术</h3>
+                    <p>清空艾本的背包</p>
+                    <code>/clear ab</code>
+                </div>
+                
+                <div class="command-card">
+                    <h3>无限传送</h3>
+                    <p>随机传送艾本</p>
+                    <code>/execute as ab run spreadplayers ~ ~ 100 500 false @s</code>
+                </div>
+                
+                <div class="command-card">
+                    <h3>声音骚扰</h3>
+                    <p>在艾本耳边播放恐怖声音</p>
+                    <code>/execute at ab run playsound minecraft:entity.ender_dragon.growl master @a ~ ~ ~ 100 1</code>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 每天10坑艾本页面 -->
+    <div class="container" id="tricks-page" style="display: none;">
+        <div class="content-section">
+            <h2>每天10坑艾本</h2>
+            <p>每日更新的坑艾本小技巧，持续更新中...</p>
+            
+            <div class="trick-list">
+                <div class="trick-item">
+                    <h3>1. 无限岩浆雨</h3>
+                    <p>在艾本头顶不断生成岩浆块</p>
+                    <code>/execute at ab run fill ~5 ~5 ~5 ~-5 ~10 ~-5 minecraft:lava replace air</code>
+                </div>
+                
+                <div class="trick-item">
+                    <h3>2. 强制视角锁定</h3>
+                    <p>让艾本只能看向一个方向</p>
+                    <code>/execute as ab run tp @s ~ ~ ~ 0 0</code>
+                </div>
+                
+                <div class="trick-item">
+                    <h3>3. 物品吸引术</h3>
+                    <p>让艾本捡不到任何物品</p>
+                    <code>/execute at ab run tp @e[type=item] ~ ~10 ~</code>
+                </div>
+                
+                <div class="trick-item">
+                    <h3>4. 无限凋零效果</h3>
+                    <p>给艾本永久凋零效果</p>
+                    <code>/effect give ab minecraft:wither 1000000 1 true</code>
+                </div>
+                
+                <div class="trick-item">
+                    <h3>5. 禁止跳跃</h3>
+                    <p>让艾本无法跳跃</p>
+                    <code>/effect give ab minecraft:jump_boost 1000000 250 true</code>
+                </div>
+                
+                <div class="trick-item">
+                    <h3>6. 无限夜视</h3>
+                    <p>给艾本永久夜视但屏幕全白</p>
+                    <code>/effect give ab minecraft:night_vision 1000000 255 true</code>
+                </div>
+                
+                <div class="trick-item">
+                    <h3>7. 假死亡</h3>
+                    <p>让艾本以为自己死了</p>
+                    <code>/execute as ab run title @s title {"text":"你死了","color":"red"}</code>
+                </div>
+                
+                <div class="trick-item">
+                    <h3>8. 物品改名</h3>
+                    <p>偷偷修改艾本手中物品的名字</p>
+                    <code>/execute as ab run item modify entity @s weapon.mainhand minecraft:custom_name{"text":"艾本是大笨蛋"}</code>
+                </div>
+                
+                <div class="trick-item">
+                    <h3>9. 禁止破坏方块</h3>
+                    <p>让艾本无法破坏任何方块</p>
+                    <code>/ability ab maydestroy false</code>
+                </div>
+                
+                <div class="trick-item">
+                    <h3>10. 无限掉落物品</h3>
+                    <p>让艾本一直掉落手中的物品</p>
+                    <code>/execute as ab run summon item ~ ~ ~ {Item:{id:"minecraft:diamond",Count:1b},PickupDelay:10000}</code>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 关于页面 -->
+    <div class="container" id="about-page" style="display: none;">
+        <div class="about-content">
+            <img src="https://via.placeholder.com/150" alt="于锦怡">
+            <h2>关于本网站</h2>
+            <p>本网站由于锦怡创建，专门用于收集和分享在我的世界1.19 JAVA版中坑艾本的各种有趣指令和方法。</p>
+            <p>所有内容均为娱乐目的，请勿在未经允许的情况下对他人使用这些指令。</p>
+            <p>© 2023 于锦怡 版权所有</p>
+        </div>
+    </div>
+    
+    <!-- 页脚 -->
+    <footer>
+        <p>© 2023 坑艾本 - 于锦怡的恶作剧收藏 | 仅供娱乐</p>
+    </footer>
+    
+    <script>
+        // 显示指定页面，隐藏其他页面
+        function showPage(pageId) {
+            // 隐藏所有页面
+            document.getElementById('home-page').style.display = 'none';
+            document.getElementById('tricks-page').style.display = 'none';
+            document.getElementById('about-page').style.display = 'none';
+            
+            // 显示选中的页面
+            document.getElementById(pageId + '-page').style.display = 'block';
+            
+            // 更新导航栏活动状态
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.textContent === (pageId === 'home' ? '主页' : 
+                                         pageId === 'tricks' ? '每天10坑艾本' : '关于')) {
+                    link.classList.add('active');
+                }
+            });
+        }
+        
+        // 默认显示主页
+        document.addEventListener('DOMContentLoaded', function() {
+            showPage('home');
+        });
+    </script>
+</body>
+  </html>
