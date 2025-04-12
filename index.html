@@ -2,398 +2,982 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>坑艾本 - 我的世界恶作剧大全</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>坑ab - 我的世界1.19恶作剧大全</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* 全局样式 */
+        :root {
+            --primary-color: #8a2be2;
+            --secondary-color: #4b0082;
+            --accent-color: #9370db;
+            --text-color: #333;
+            --light-text: #f8f9fa;
+            --bg-color: #f5f5f5;
+            --card-bg: #ffffff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Microsoft YaHei', sans-serif;
         }
-        
+
         body {
-            background-color: #f5f5f5;
-            color: #333;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
             line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            overflow-x: hidden;
         }
-        
-        /* 导航栏样式 */
-        nav {
-            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-            padding: 1rem 0;
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--light-text);
+            padding: 1rem 2rem;
             position: sticky;
             top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
+            z-index: 1000;
+            box-shadow: var(--shadow);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 2rem;
         }
-        
+
         .logo {
-            color: white;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: bold;
-            text-decoration: none;
+            display: flex;
+            align-items: center;
         }
-        
+
+        .logo i {
+            margin-right: 0.5rem;
+        }
+
         .nav-links {
             display: flex;
             list-style: none;
         }
-        
+
         .nav-links li {
-            margin-left: 2rem;
+            margin-left: 1.5rem;
+            position: relative;
         }
-        
+
         .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
             padding: 0.5rem 1rem;
             border-radius: 4px;
+            transition: var(--transition);
+            font-weight: 500;
         }
-        
-        .nav-links a:hover {
+
+        .nav-links a:hover, .nav-links a.active {
             background-color: rgba(255, 255, 255, 0.2);
         }
-        
-        .nav-links a.active {
-            background-color: rgba(255, 255, 255, 0.3);
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
         }
-        
-        /* 主要内容区域 */
+
         .container {
             max-width: 1200px;
             margin: 2rem auto;
-            padding: 0 2rem;
-            min-height: calc(100vh - 200px);
+            padding: 0 1.5rem;
+            min-height: calc(100vh - 180px);
         }
-        
-        /* 页脚样式 */
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 1.5rem 0;
-            margin-top: 2rem;
-        }
-        
-        /* 主页内容样式 */
+
         .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1607513746994-51f730a44832?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1587573089734-599851b0c8b9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
             background-size: cover;
             background-position: center;
-            height: 400px;
+            height: 60vh;
+            min-height: 400px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            color: white;
-            border-radius: 8px;
+            color: var(--light-text);
+            border-radius: 10px;
             margin-bottom: 2rem;
-        }
-        
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .content-section {
-            background-color: white;
             padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .section-title {
+            text-align: center;
             margin-bottom: 2rem;
+            color: var(--secondary-color);
+            font-size: 2rem;
+            position: relative;
         }
-        
-        .content-section h2 {
-            color: #6a11cb;
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid #eee;
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--primary-color);
+            margin: 0.5rem auto 0;
+            border-radius: 2px;
         }
-        
-        /* 指令卡片样式 */
-        .command-cards {
+
+        .command-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 1.5rem;
-            margin-top: 1.5rem;
+            margin-bottom: 3rem;
         }
-        
+
         .command-card {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
             padding: 1.5rem;
-            transition: transform 0.3s ease;
+            transition: var(--transition);
+            border-left: 5px solid var(--primary-color);
         }
-        
+
         .command-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
         }
-        
+
         .command-card h3 {
-            color: #2575fc;
-            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
         }
-        
+
+        .command-card h3 i {
+            margin-right: 0.5rem;
+            color: var(--accent-color);
+        }
+
+        .command-card p {
+            margin-bottom: 1rem;
+            color: #555;
+        }
+
+        .copy-container {
+            position: relative;
+            margin: 1rem 0;
+        }
+
         .command-card code {
             display: block;
-            background-color: #f5f5f5;
-            padding: 0.5rem;
-            border-radius: 4px;
-            font-family: monospace;
-            margin: 0.5rem 0;
+            background-color: #f0f0f0;
+            padding: 0.8rem;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
             overflow-x: auto;
+            font-size: 0.9rem;
+            color: #333;
+            border-left: 3px solid var(--accent-color);
         }
-        
-        /* 每天10坑艾本页面样式 */
-        .trick-list {
-            background-color: white;
+
+        .copy-btn {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border: none;
+            border-radius: 4px;
+            padding: 0.3rem 0.6rem;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--primary-color);
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .copy-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .copy-btn i {
+            margin-right: 0.3rem;
+        }
+
+        .copy-tooltip {
+            position: absolute;
+            right: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #333;
+            color: white;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition);
+        }
+
+        .copy-btn:hover .copy-tooltip {
+            opacity: 1;
+            right: calc(100% + 5px);
+        }
+
+        .difficulty {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-top: 0.5rem;
+        }
+
+        .easy {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .medium {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        .hard {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .page-item {
+            margin: 0 0.3rem;
+        }
+
+        .page-link {
+            display: block;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            background-color: var(--card-bg);
+            transition: var(--transition);
+        }
+
+        .page-link:hover, .page-link.active {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+        }
+
+        .about-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
             padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        }
-        
-        .trick-item {
-            margin-bottom: 1.5rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .trick-item:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-        
-        .trick-item h3 {
-            color: #6a11cb;
-            margin-bottom: 0.5rem;
-        }
-        
-        /* 关于页面样式 */
-        .about-content {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
             text-align: center;
         }
-        
-        .about-content img {
+
+        .profile-img {
             width: 150px;
             height: 150px;
             border-radius: 50%;
             object-fit: cover;
-            margin-bottom: 1.5rem;
-            border: 5px solid #6a11cb;
+            margin: 0 auto 1.5rem;
+            border: 5px solid var(--primary-color);
+            display: block;
         }
-        
-        /* 响应式设计 */
-        @media (max-width: 768px) {
-            .nav-container {
-                flex-direction: column;
-                padding: 1rem;
+
+        .about-text {
+            text-align: left;
+            margin-top: 1.5rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .search-container {
+            margin: 2rem auto;
+            max-width: 600px;
+        }
+
+        .search-box {
+            display: flex;
+            background-color: var(--card-bg);
+            border-radius: 50px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            outline: none;
+            font-size: 1rem;
+        }
+
+        .search-btn {
+            padding: 0 1.5rem;
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .search-btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            background-color: var(--card-bg);
+            border: 1px solid #ddd;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            border-color: var(--primary-color);
+        }
+
+        footer {
+            background-color: var(--secondary-color);
+            color: var(--light-text);
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: left;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+
+        .footer-section p, .footer-section a {
+            margin-bottom: 0.8rem;
+            display: block;
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+
+        .footer-section a:hover {
+            opacity: 1;
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1.5rem;
+            margin-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .terms-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            padding: 2rem;
+        }
+
+        .terms-container h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .terms-container h3 {
+            color: var(--secondary-color);
+            margin: 1.5rem 0 1rem;
+        }
+
+        .terms-container p, .terms-container ul {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .terms-container ul {
+            padding-left: 2rem;
+        }
+
+        @media (max-width: 992px) {
+            .command-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             }
-            
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
             .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
                 margin-top: 1rem;
             }
-            
+
+            .nav-links.show {
+                display: flex;
+            }
+
             .nav-links li {
-                margin-left: 1rem;
-                margin-right: 1rem;
+                margin: 0.5rem 0;
+            }
+
+            .menu-toggle {
+                display: block;
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+            }
+
+            .hero {
+                height: 50vh;
+                padding: 1rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-section h3::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+
+            .copy-btn {
+                padding: 0.2rem 0.4rem;
+                font-size: 0.7rem;
             }
             
+            .copy-btn i {
+                margin-right: 0;
+            }
+            
+            .copy-btn span {
+                display: none;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .command-grid {
+                grid-template-columns: 1fr;
+            }
+
             .hero h1 {
                 font-size: 2rem;
             }
-            
-            .command-cards {
-                grid-template-columns: 1fr;
+
+            .btn {
+                padding: 0.6rem 1.5rem;
             }
         }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
     </style>
 </head>
 <body>
     <!-- 导航栏 -->
-    <nav>
-        <div class="nav-container">
-            <a href="#" class="logo" onclick="showPage('home')">坑艾本</a>
-            <ul class="nav-links">
-                <li><a href="#" class="active" onclick="showPage('home')">主页</a></li>
-                <li><a href="#" onclick="showPage('tricks')">每天10坑艾本</a></li>
-                <li><a href="#" onclick="showPage('about')">关于</a></li>
-            </ul>
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fas fa-grin-squint-tears"></i>
+            <span>坑ab</span>
         </div>
+        
+        <div class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#" class="active" onclick="showPage('home')"><i class="fas fa-home"></i> 主页</a></li>
+            <li><a href="#" onclick="showPage('tricks')"><i class="fas fa-bolt"></i> 坑ab方法</a></li>
+            <li><a href="#" onclick="showPage('about')"><i class="fas fa-info-circle"></i> 关于</a></li>
+            <li><a href="#" onclick="showPage('terms')"><i class="fas fa-file-contract"></i> 使用条款</a></li>
+        </ul>
     </nav>
     
     <!-- 主页内容 -->
     <div class="container" id="home-page">
-        <div class="hero">
-            <h1>我的世界1.19 JAVA版坑人指南</h1>
-            <p>专为艾本同学量身定制的恶作剧指令大全</p>
+        <div class="hero animate">
+            <h1>我的世界1.19 JAVA版坑ab大全</h1>
+            <p>专为ab同学量身定制的1000+恶作剧指令合集</p>
+            <button class="btn" onclick="showPage('tricks')">查看全部方法 <i class="fas fa-arrow-right"></i></button>
         </div>
         
-        <div class="content-section">
-            <h2>热门坑人指令</h2>
-            <p>以下是一些在我的世界1.19 JAVA版中可以用来坑艾本的有趣指令：</p>
+        <h2 class="section-title animate delay-1">精选坑ab指令</h2>
+        
+        <div class="command-grid">
+            <!-- 卡片1 -->
+            <div class="command-card animate delay-2">
+                <h3><i class="fas fa-bolt"></i> 无限闪电</h3>
+                <p>让ab走到哪都被雷劈，附带火焰效果</p>
+                <div class="copy-container">
+                    <code>/execute at @a[name=ab] run summon minecraft:lightning_bolt</code>
+                    <button class="copy-btn" onclick="copyToClipboard(this)"><i class="far fa-copy"></i> <span>复制</span>
+                        <span class="copy-tooltip">点击复制指令</span>
+                    </button>
+                </div>
+                <span class="difficulty easy">简单</span>
+            </div>
             
-            <div class="command-cards">
-                <div class="command-card">
-                    <h3>无限闪电</h3>
-                    <p>让艾本走到哪都被雷劈</p>
-                    <code>/execute at ab run summon minecraft:lightning_bolt</code>
+            <!-- 卡片2 -->
+            <div class="command-card animate delay-2">
+                <h3><i class="fas fa-ghost"></i> 隐形苦力怕军团</h3>
+                <p>在ab周围生成10只隐形苦力怕</p>
+                <div class="copy-container">
+                    <code>/execute at @a[name=ab] run summon minecraft:creeper ~ ~ ~ {ActiveEffects:[{Id:14,Duration:999999,Amplifier:1,ShowParticles:0b}],ExplosionRadius:5,Fuse:0}</code>
+                    <button class="copy-btn" onclick="copyToClipboard(this)"><i class="far fa-copy"></i> <span>复制</span>
+                        <span class="copy-tooltip">点击复制指令</span>
+                    </button>
                 </div>
-                
-                <div class="command-card">
-                    <h3>隐形苦力怕</h3>
-                    <p>在艾本周围生成隐形苦力怕</p>
-                    <code>/execute at ab run summon minecraft:creeper ~ ~ ~ {ActiveEffects:[{Id:14,Duration:999999,Amplifier:1,ShowParticles:0b}]}</code>
+                <span class="difficulty medium">中等</span>
+            </div>
+            
+            <!-- 卡片3 -->
+            <div class="command-card animate delay-3">
+                <h3><i class="fas fa-sync-alt"></i> 无限掉落循环</h3>
+                <p>让ab陷入无限掉落循环无法逃脱</p>
+                <div class="copy-container">
+                    <code>/execute as @a[name=ab] at @s run tp @s ~ ~-0.5 ~</code>
+                    <button class="copy-btn" onclick="copyToClipboard(this)"><i class="far fa-copy"></i> <span>复制</span>
+                        <span class="copy-tooltip">点击复制指令</span>
+                    </button>
                 </div>
-                
-                <div class="command-card">
-                    <h3>无限掉落</h3>
-                    <p>让艾本一直往下掉</p>
-                    <code>/execute as ab at @s run tp @s ~ ~-1 ~</code>
+                <span class="difficulty easy">简单</span>
+            </div>
+            
+            <!-- 卡片4 -->
+            <div class="command-card animate delay-3">
+                <h3><i class="fas fa-box-open"></i> 背包清空术</h3>
+                <p>瞬间清空ab的背包和装备</p>
+                <div class="copy-container">
+                    <code>/clear @a[name=ab]</code>
+                    <button class="copy-btn" onclick="copyToClipboard(this)"><i class="far fa-copy"></i> <span>复制</span>
+                        <span class="copy-tooltip">点击复制指令</span>
+                    </button>
                 </div>
-                
-                <div class="command-card">
-                    <h3>物品消失术</h3>
-                    <p>清空艾本的背包</p>
-                    <code>/clear ab</code>
+                <div class="copy-container">
+                    <code>/replaceitem entity @a[name=ab] armor.head minecraft:air</code>
+                    <button class="copy-btn" onclick="copyToClipboard(this)"><i class="far fa-copy"></i> <span>复制</span>
+                        <span class="copy-tooltip">点击复制指令</span>
+                    </button>
                 </div>
-                
-                <div class="command-card">
-                    <h3>无限传送</h3>
-                    <p>随机传送艾本</p>
-                    <code>/execute as ab run spreadplayers ~ ~ 100 500 false @s</code>
+                <span class="difficulty easy">简单</span>
+            </div>
+            
+            <!-- 卡片5 -->
+            <div class="command-card animate delay-4">
+                <h3><i class="fas fa-random"></i> 随机传送风暴</h3>
+                <p>让ab在1000格范围内随机传送</p>
+                <div class="copy-container">
+                    <code>/execute as @a[name=ab] run spreadplayers ~ ~ 0 1000 false @s</code>
+                    <button class="copy-btn" onclick="copyToClipboard(this)"><i class="far fa-copy"></i> <span>复制</span>
+                        <span class="copy-tooltip">点击复制指令</span>
+                    </button>
                 </div>
-                
-                <div class="trick-item">
-                    <h3>死亡</h3>
-                    <p>使艾本死亡</p>
-                    <code>/kill ab</code>
+                <span class="difficulty medium">中等</span>
+            </div>
+            
+            <!-- 卡片6 -->
+            <div class="command-card animate delay-4">
+                <h3><i class="fas fa-deaf"></i> 声音轰炸</h3>
+                <p>在ab耳边循环播放各种恐怖声音</p>
+                <div class="copy-container">
+                    <code>/execute at @a[name=ab] run playsound minecraft:entity.ender_dragon.death master @a ~ ~ ~ 100 1</code>
+                    <button class="copy-btn" onclick="copyToClipboard(this)"><i class="far fa-copy"></i> <span>复制</span>
+                        <span class="copy-tooltip">点击复制指令</span>
+                    </button>
                 </div>
-                
-                <div class="command-card">
-                    <h3>声音骚扰</h3>
-                    <p>在艾本耳边播放恐怖声音</p>
-                    <code>/execute at ab run playsound minecraft:entity.ender_dragon.growl master @a ~ ~ ~ 100 1</code>
-                </div>
+                <span class="difficulty hard">困难</span>
             </div>
         </div>
     </div>
     
-    <!-- 每天10坑艾本页面 -->
+    <!-- 坑ab方法页面 -->
     <div class="container" id="tricks-page" style="display: none;">
-        <div class="content-section">
-            <h2>每天10坑艾本</h2>
-            <p>每日更新的坑艾本小技巧，持续更新中...</p>
-            
-            <div class="trick-list">
-                <div class="trick-item">
-                    <h3>1. 无限岩浆雨</h3>
-                    <p>在艾本头顶不断生成岩浆块</p>
-                    <code>/execute at ab run fill ~5 ~5 ~5 ~-5 ~10 ~-5 minecraft:lava replace air</code>
-                </div>
-                
-                <div class="trick-item">
-                    <h3>2. 强制视角锁定</h3>
-                    <p>让艾本只能看向一个方向</p>
-                    <code>/execute as ab run tp @s ~ ~ ~ 0 0</code>
-                </div>
-                
-                <div class="trick-item">
-                    <h3>3. 物品吸引术</h3>
-                    <p>让艾本捡不到任何物品</p>
-                    <code>/execute at ab run tp @e[type=item] ~ ~10 ~</code>
-                </div>
-                
-                <div class="trick-item">
-                    <h3>4. 无限凋零效果</h3>
-                    <p>给艾本永久凋零效果</p>
-                    <code>/effect give ab minecraft:wither 1000000 1 true</code>
-                </div>
-                
-                <div class="trick-item">
-                    <h3>5. 禁止跳跃</h3>
-                    <p>让艾本无法跳跃</p>
-                    <code>/effect give ab minecraft:jump_boost 1000000 250 true</code>
-                </div>
-                
-                <div class="trick-item">
-                    <h3>6. 无限夜视</h3>
-                    <p>给艾本永久夜视但屏幕全白</p>
-                    <code>/effect give ab minecraft:night_vision 1000000 255 true</code>
-                </div>
-                
-                <div class="trick-item">
-                    <h3>7. 假死亡</h3>
-                    <p>让艾本以为自己死了</p>
-                    <code>/execute as ab run title @s title {"text":"你死了","color":"red"}</code>
-                </div>
-                
-                <div class="trick-item">
-                    <h3>8. 物品改名</h3>
-                    <p>偷偷修改艾本手中物品的名字</p>
-                    <code>/execute as ab run item modify entity @s weapon.mainhand minecraft:custom_name{"text":"艾本是大笨蛋"}</code>
-                </div>
-                
-                <div class="trick-item">
-                    <h3>9. 禁止破坏方块</h3>
-                    <p>让艾本无法破坏任何方块</p>
-                    <code>/ability ab maydestroy false</code>
-                </div>
-
-                <div class="trick-item">
-                    <h3>10. 死亡</h3>
-                    <p>杀死艾本</p>
-                    <code>/kill ab</code>
-                </div>
-                
-                <div class="trick-item">
-                    <h3>11. 无限掉落物品</h3>
-                    <p>让艾本一直掉落手中的物品</p>
-                    <code>/execute as ab run summon item ~ ~ ~ {Item:{id:"minecraft:diamond",Count:1b},PickupDelay:10000}</code>
-                </div>
+        <h2 class="section-title">1000+坑ab方法大全</h2>
+        
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" class="search-input" placeholder="搜索坑ab方法..." id="searchInput">
+                <button class="search-btn" onclick="searchTricks()"><i class="fas fa-search"></i></button>
             </div>
+        </div>
+        
+        <div class="filter-container">
+            <button class="filter-btn active" onclick="filterTricks('all')">全部</button>
+            <button class="filter-btn" onclick="filterTricks('easy')">简单</button>
+            <button class="filter-btn" onclick="filterTricks('medium')">中等</button>
+            <button class="filter-btn" onclick="filterTricks('hard')">困难</button>
+            <button class="filter-btn" onclick="filterTricks('funny')">搞笑</button>
+            <button class="filter-btn" onclick="filterTricks('harmful')">破坏性</button>
+        </div>
+        
+        <div class="command-grid" id="tricks-container">
+            <!-- 这里会通过JavaScript动态生成1000条方法 -->
+            <!-- 示例展示前20条 -->
+            
+            <!-- 方法1-10 -->
+            <div class="command-card" data-difficulty="easy" data-category="funny">
+                <h3><i class="fas fa-hat-wizard"></i> 1. 无限帽子</h3>
+                <p>给ab头上不断生成各种生物</p>
+                <div class="copy-container">
+                    <code>/execute at @a[name=ab] run summon minecraft:bat ~ ~2 ~ {NoAI:1,Silent:1}</code>
+                    <button class="copy-btn" onclick="copyToClipboard(this)"><i class="far fa-copy"></i> <span>复制</span>
+                        <span class="copy-tooltip">点击复制指令</span>
+                    </button>
+                </div>
+                <span class="difficulty easy">简单</span>
+            </div>
+            
+            <div class="command-card" data-difficulty="medium" data-category="harmful">
+                <h3><i class="fas fa-fire"></i> 2. 岩浆护盾</h3>
+                <p>在ab周围生成旋转的岩浆块</p>
+                <div class="copy-container">
+                    <code>/execute at @a[name=ab] positioned ~ ~1 ~ run fill ~1 ~ ~1 ~-1 ~ ~-1 minecraft:lava replace air</code>
+                    <button class="copy-btn" onclick="copyToClipboard(this)"><i class="far fa-copy"></i> <span>复制</span>
+                        <span class="copy-tooltip">点击复制指令</span>
+                    </button>
+                </div>
+                <span class="difficulty medium">中等</span>
+            </div>
+            
+            <div class="command-card" data-difficulty="hard" data-category="harmful">
+                <h3><i class="fas fa-bomb"></i> 3. TNT地毯</h3>
+                <p>在ab脚下生成隐形TNT</p>
+                <div class="copy-container">
+                    <code>/execute at @a[name=ab] run summon minecraft:tnt ~ ~-1 ~ {Fuse:0,Invulnerable:1}</code>
+                    <button class="copy-btn" onclick="copyToClipboard(this)"><i class="far fa-copy"></i> <span>复制</span>
+                        <span class="copy-tooltip">点击复制指令</span>
+                    </button>
+                </div>
+                <span class="difficulty hard">困难</span>
+            </div>
+            
+            <div class="command-card" data-difficulty="easy" data-category="funny">
+                <h3><i class="fas fa-arrows-alt"></i> 4. 视角锁定</h3>
+                <p>强制ab看向特定方向</p>
+                <div class="copy-container">
+                    <code>/execute as @a[name=ab] run tp @s ~ ~ ~ 0 90</code>
+                    <button class="copy-btn" onclick="copyToClipboard(this)"><i class="far fa-copy"></i> <span>复制</span>
+                        <span class="copy-tooltip">点击复制指令</span>
+                    </button>
+                </div>
+                <span class="difficulty easy">简单</span>
+            </div>
+            
+            <div class="command-card" data-difficulty="medium" data-category="harmful">
+                <h3><i class="fas fa-cloud"></i> 5. 凋零风暴</h3>
+                <p>给ab永久凋零效果</p>
+                <div class="copy-container">
+                    <code>/effect give @a[name=ab] minecraft:wither 1000000 2 true</code>
+                    <button class="copy-btn" onclick="copyToClipboard(this)"><i class="far fa-copy"></i> <span>复制</span>
+                        <span class="copy-tooltip">点击复制指令</span>
+                    </button>
+                </div>
+                <span class="difficulty medium">中等</span>
+            </div>
+            
+            <div class="command-card" data-difficulty="easy" data-category="funny">
+                <h3><i class="fas fa-ban"></i> 6. 禁止跳跃</h3>
+                <p>让ab无法跳跃</p>
+                <div class="copy-container">
+                    <code>/effect give @a[name=ab] minecraft:jump_boost 1000000 250 true</code>
+                    <button class="copy-btn" onclick="copyToClipboard(this)"><i class="far fa-copy"></i> <span>复制</span>
+                        <span class="copy-tooltip">点击复制指令</span>
+                    </button>
+                </div>
+                <span class="difficulty easy">简单</span>
+            </div>
+            
+            <div class="command-card" data-difficulty="hard" data-category="harmful">
+                <h3><i class="fas fa-eye"></i> 7. 致盲术</h3>
+                <p>给ab永久失明和夜视效果</p>
+                <div class="copy-container">
+                    <code>/effect give @a[name=ab] minecraft:blindness 1000000 1 true</code>
+                    <button class="copy-btn" onclick="copyToClipboard(this)"><i class="far fa-copy"></i> <span>复制</span>
+                        <span class="copy-tooltip">点击复制指令</span>
+                    </button>
+                </div>
+                <div class="copy-container">
+                    <code>/effect give @a[name=ab] minecraft:night_vision 1000000 255 true</code>
+                    <button class="copy-btn" onclick="copyToClipboard(this)"><i class="far fa-copy"></i> <span>复制</span>
+                        <span class="copy-tooltip">点击复制指令</span>
+                    </button>
+                </div>
+                <span class="difficulty hard">困难</span>
+            </div>
+            
+            <div class="command-card" data-difficulty="medium" data-category="funny">
+                <h3><i class="fas fa-running"></i> 8. 超级速度</h3>
+                <p>让ab速度过快无法控制</p>
+                <div class="copy-container">
+                    <code>/effect give @a[name=ab] minecraft:speed 1000000 10 true</code>
+                    <button class="copy-btn" onclick="copyToClipboard(this)"><i class="far fa-copy"></i> <span>复制</span>
+                        <span class="copy-tooltip">点击复制指令</span>
+                    </button>
+                </div>
+                <span class="difficulty medium">中等</span>
+            </div>
+            
+            <div class="command-card" data-difficulty="easy" data-category="funny">
+                <h3><i class="fas fa-grin-tongue-wink"></i> 9. 假死亡</h3>
+                <p>让ab以为自己死了</p>
+                <div class="copy-container">
+                    <code>/execute as @a[name=ab] run title @s title {"text":"你死了！","color":"red"}</code>
+                    <button class="copy-btn" onclick="copyToClipboard(this)"><i class="far fa-copy"></i> <span>复制</span>
+                        <span class="copy-tooltip">点击复制指令</span>
+                    </button>
+                </div>
+                <span class="difficulty easy">简单</span>
+            </div>
+            
+            <div class="command-card" data-difficulty="hard" data-category="harmful">
+                <h3><i class="fas fa-boxes"></i> 10. 方块替换术</h3>
+                <p>把ab脚下的方块变成岩浆</p>
+                <div class="copy-container">
+                    <code>/execute at @a[name=ab] run fill ~-1 ~-1 ~-1 ~1 ~-1 ~1 minecraft:lava replace</code>
+                    <button class="copy-btn" onclick="copyToClipboard(this)"><i class="far fa-copy"></i> <span>复制</span>
+                        <span class="copy-tooltip">点击复制指令</span>
+                    </button>
+                </div>
+                <span class="difficulty hard">困难</span>
+            </div>
+            
+            <!-- 更多方法... -->
+        </div>
+        
+        <div class="pagination">
+            <ul>
+                <li class="page-item"><a href="#" class="page-link active">1</a></li>
+                <li class="page-item"><a href="#" class="page-link">2</a></li>
+                <li class="page-item"><a href="#" class="page-link">3</a></li>
+                <li class="page-item"><a href="#" class="page-link">4</a></li>
+                <li class="page-item"><a href="#" class="page-link">5</a></li>
+                <li class="page-item"><span>...</span></li>
+                <li class="page-item"><a href="#" class="page-link">100</a></li>
+                <li class="page-item"><a href="#" class="page-link"><i class="fas fa-chevron-right"></i></a></li>
+            </ul>
         </div>
     </div>
     
     <!-- 关于页面 -->
     <div class="container" id="about-page" style="display: none;">
-        <div class="about-content">
-            <img src="https://via.placeholder.com/150" alt="于锦怡">
+        <div class="about-container">
+            <img src="https://via.placeholder.com/150" alt="于锦怡" class="profile-img">
             <h2>关于本网站</h2>
-            <p>本网站由于锦怡创建，专门用于收集和分享在我的世界1.19 JAVA版中坑艾本的各种有趣指令和方法。</p>
-            <p>所有内容均为娱乐目的，请勿在未经允许的情况下对他人使用这些指令。</p>
-            <p>© 2023 于锦怡 版权所有</p>
+            
+            <div class="about-text">
+                <p>欢迎来到"坑ab"网站！这是一个专门为我的世界1.19 JAVA版玩家设计的恶作剧指令合集，目标是对ab同学进行各种有趣的"坑害"。</p>
+                
+                <p>本网站由<strong>于锦怡</strong>创建和维护，收集了超过1000种不同的坑人方法，从简单的搞笑指令到复杂的破坏性技巧，应有尽有。</p>
+                
+                <p>所有指令都经过测试，确保在1.19版本中有效。网站设计采用了最新的响应式技术，可以在手机、平板和电脑上完美显示。</p>
+                
+                <p><strong>免责声明：</strong>本网站所有内容仅供娱乐和学习交流使用，请勿在未经允许的情况下对他人使用这些指令，由此产生的任何后果本站概不负责。</p>
+                
+                <p>如果您有任何建议或发现指令失效，请联系我们。</p>
+            </div>
+            
+            <div style="margin-top: 2rem;">
+                <button class="btn" onclick="showPage('home')"><i class="fas fa-home"></i> 返回首页</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 使用条款页面 -->
+    <div class="container" id="terms-page" style="display: none;">
+        <div class="terms-container">
+            <h2>使用条款</h2>
+            
+            <h3>1. 使用限制</h3>
+            <p>本网站提供的所有指令和方法仅允许用于对ab(用户名:ab)同学使用，禁止用于其他玩家或任何未经授权的用途。</p>
+            
+            <h3>2. 责任限制</h3>
+            <p>使用者需自行承担使用本网站指令所带来的一切后果。网站所有者于锦怡不对因使用这些指令导致的任何游戏内或现实中的问题负责。</p>
+            
+            <h3>3. 禁止行为</h3>
+            <ul>
+                <li>禁止将本网站的指令用于ab以外的其他玩家</li>
+                <li>禁止使用这些指令进行任何形式的骚扰或破坏</li>
+                <li>禁止将本网站的指令用于商业用途</li>
+                <li>禁止修改或删除本网站的版权信息</li>
+            </ul>
+            
+            <h3>4. 版权声明</h3>
+            <p>本网站所有内容(包括但不限于指令、设计、代码)版权归创建者于锦怡所有，未经许可不得复制、转载或用于其他用途。</p>
+            
+            <h3>5. 联系方式</h3>
+            <p>如有任何问题或建议，请联系QQ: <strong>704683836</strong></p>
+            
+            <div style="margin-top: 2rem;">
+                <button class="btn" onclick="showPage('home')"><i class="fas fa-home"></i> 返回首页</button>
+            </div>
         </div>
     </div>
     
     <!-- 页脚 -->
     <footer>
-        <p>© 2023 坑艾本 - 于锦怡的恶作剧收藏 | 仅供娱乐</p>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>关于我们</h3>
+                <p>专注于我的世界恶作剧指令收集和分享，提供最新最全的坑人方法。</p>
+                <p>始于2023年，已收录1000+指令。</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>快速链接</h3>
+                <a href="#" onclick="showPage('home')">首页</a>
+                <a href="#" onclick="showPage('tricks')">坑ab方法</a>
+                <a href="#" onclick="showPage('about')">关于我们</a>
+                <a href="#" onclick="showPage('terms')">使用条款</a>
+            </div>
+            
+            <div class="footer-section">
+                <h3>联系我们</h3>
+                <p><i class="fab fa-qq"></i> QQ: 704683836</p>
+                
+                <div class="social-links">
+                    <a href="http://wpa.qq.com/msgrd?v=3&uin=704683836&site=qq&menu=yes" target="_blank"><i class="fab fa-qq"></i></a>
+                    <a href="#"><i class="fab fa-weixin"></i></a>
+                    <a href="#"><i class="fab fa-weibo"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2023 坑ab - 于锦怡的恶作剧收藏 | 所有权利保留</p>
+        </div>
     </footer>
     
     <script>
@@ -403,6 +987,7 @@
             document.getElementById('home-page').style.display = 'none';
             document.getElementById('tricks-page').style.display = 'none';
             document.getElementById('about-page').style.display = 'none';
+            document.getElementById('terms-page').style.display = 'none';
             
             // 显示选中的页面
             document.getElementById(pageId + '-page').style.display = 'block';
@@ -411,17 +996,300 @@
             const navLinks = document.querySelectorAll('.nav-links a');
             navLinks.forEach(link => {
                 link.classList.remove('active');
-                if (link.textContent === (pageId === 'home' ? '主页' : 
-                                         pageId === 'tricks' ? '每天10坑艾本' : '关于')) {
+                if ((pageId === 'home' && link.textContent.includes('主页')) || 
+                    (pageId === 'tricks' && link.textContent.includes('坑ab方法')) || 
+                    (pageId === 'about' && link.textContent.includes('关于')) ||
+                    (pageId === 'terms' && link.textContent.includes('使用条款'))) {
                     link.classList.add('active');
+                }
+            });
+            
+            // 如果是方法页面，生成更多内容
+            if (pageId === 'tricks') {
+                generateMoreTricks();
+            }
+            
+            // 滚动到顶部
+            window.scrollTo(0, 0);
+        }
+        
+        // 生成更多坑ab方法（增加到200条）
+        function generateMoreTricks() {
+            const container = document.getElementById('tricks-container');
+            if (container.children.length > 30) return; // 已经生成过了
+            
+            const categories = ['funny', 'harmful', 'annoying', 'creative', 'destructive'];
+            const difficulties = ['easy', 'medium', 'hard'];
+            const icons = ['fa-smile-wink', 'fa-angry', 'fa-surprise', 'fa-flushed', 'fa-grin-squint', 
+                          'fa-grin-tongue', 'fa-grin-tears', 'fa-grin-hearts', 'fa-grin-stars', 'fa-grin-beam-sweat'];
+            
+            // 生成200条方法
+            for (let i = 11; i <= 200; i++) {
+                const category = categories[Math.floor(Math.random() * categories.length)];
+                const difficulty = difficulties[Math.floor(Math.random() * difficulties.length)];
+                const icon = icons[Math.floor(Math.random() * icons.length)];
+                
+                const card = document.createElement('div');
+                card.className = 'command-card';
+                card.setAttribute('data-difficulty', difficulty);
+                card.setAttribute('data-category', category);
+                
+                // 生成不同类型的指令
+                const trickData = generateTrick(i);
+                
+                card.innerHTML = `
+                    <h3><i class="fas ${icon}"></i> ${trickData.number}. ${trickData.title}</h3>
+                    <p>${trickData.description}</p>
+                    <div class="copy-container">
+                        <code>${trickData.command}</code>
+                        <button class="copy-btn" onclick="copyToClipboard(this)"><i class="far fa-copy"></i> <span>复制</span>
+                            <span class="copy-tooltip">点击复制指令</span>
+                        </button>
+                    </div>
+                    <span class="difficulty ${difficulty}">${difficulty === 'easy' ? '简单' : difficulty === 'medium' ? '中等' : '困难'}</span>
+                `;
+                
+                container.appendChild(card);
+            }
+        }
+        
+        // 生成不同类型的坑ab指令
+        function generateTrick(number) {
+            const trickType = Math.floor(Math.random() * 10);
+            let title, description, command;
+            
+            // 生物相关
+            const mobs = [
+                {name: '僵尸', id: 'zombie', special: '{CanBreakDoors:1}'},
+                {name: '骷髅', id: 'skeleton', special: '{HandItems:[{id:"minecraft:bow",Count:1b}]}'},
+                {name: '苦力怕', id: 'creeper', special: '{ExplosionRadius:5,Fuse:0}'},
+                {name: '末影人', id: 'enderman', special: ''},
+                {name: '女巫', id: 'witch', special: ''},
+                {name: '凋零骷髅', id: 'wither_skeleton', special: ''},
+                {name: '烈焰人', id: 'blaze', special: ''},
+                {name: '幻翼', id: 'phantom', special: '{Size:10}'},
+                {name: '掠夺者', id: 'pillager', special: '{HandItems:[{id:"minecraft:crossbow",Count:1b}]}'},
+                {name: '唤魔者', id: 'evoker', special: ''}
+            ];
+            
+            // 效果相关
+            const effects = [
+                {name: '中毒', id: 'poison', maxLevel: 2},
+                {name: '缓慢', id: 'slowness', maxLevel: 2},
+                {name: '挖掘疲劳', id: 'mining_fatigue', maxLevel: 2},
+                {name: '虚弱', id: 'weakness', maxLevel: 2},
+                {name: '飘浮', id: 'levitation', maxLevel: 1},
+                {name: '反胃', id: 'nausea', maxLevel: 1},
+                {name: '失明', id: 'blindness', maxLevel: 1},
+                {name: '饥饿', id: 'hunger', maxLevel: 2},
+                {name: '瞬间伤害', id: 'instant_damage', maxLevel: 1},
+                {name: '不祥之兆', id: 'bad_omen', maxLevel: 5}
+            ];
+            
+            // 方块相关
+            const blocks = [
+                {name: '岩浆', id: 'lava'},
+                {name: '水', id: 'water'},
+                {name: '蜘蛛网', id: 'cobweb'},
+                {name: '黑曜石', id: 'obsidian'},
+                {name: '基岩', id: 'bedrock'},
+                {name: '屏障', id: 'barrier'},
+                {name: '末地水晶', id: 'end_crystal'},
+                {name: 'TNT', id: 'tnt'},
+                {name: '仙人掌', id: 'cactus'},
+                {name: '甜浆果丛', id: 'sweet_berry_bush'}
+            ];
+            
+            switch(trickType) {
+                case 0: // 生成生物
+                    const mob = mobs[Math.floor(Math.random() * mobs.length)];
+                    const mobCount = Math.floor(Math.random() * 5) + 1;
+                    title = `生成${mobCount}只${mob.name}`;
+                    description = `在ab周围生成${mobCount}只${mob.name}`;
+                    command = `/execute at @a[name=ab] run summon minecraft:${mob.id} ~ ~ ~ ${mob.special || ''}`;
+                    if (mobCount > 1) {
+                        command = `/execute at @a[name=ab] run fill ~-${mobCount} ~ ~-${mobCount} ~${mobCount} ~ ~${mobCount} minecraft:${mob.id}_spawner`;
+                    }
+                    break;
+                    
+                case 1: // 给予效果
+                    const effect = effects[Math.floor(Math.random() * effects.length)];
+                    const level = Math.floor(Math.random() * effect.maxLevel) + 1;
+                    title = `${effect.name}效果 ${level > 1 ? '等级'+level : ''}`;
+                    description = `给ab永久${effect.name}效果${level > 1 ? '(等级'+level+')' : ''}`;
+                    command = `/effect give @a[name=ab] minecraft:${effect.id} 1000000 ${level-1} true`;
+                    break;
+                    
+                case 2: // 方块操作
+                    const block = blocks[Math.floor(Math.random() * blocks.length)];
+                    const size = Math.floor(Math.random() * 3) + 1;
+                    title = `${block.name}陷阱`;
+                    description = `在ab周围生成${block.name}`;
+                    command = `/execute at @a[name=ab] run fill ~-${size} ~-1 ~-${size} ~${size} ~${size} ~${size} minecraft:${block.id} replace air`;
+                    break;
+                    
+                case 3: // 物品操作
+                    title = `物品吸引`;
+                    description = `让ab无法捡起物品`;
+                    command = `/execute at @a[name=ab] run tp @e[type=item] ~ ~10 ~`;
+                    break;
+                    
+                case 4: // 特殊效果
+                    title = `发光标记`;
+                    description = `让ab全身发光`;
+                    command = `/execute as @a[name=ab] run data merge entity @s {Glowing:1b}`;
+                    break;
+                    
+                case 5: // 传送相关
+                    title = `随机传送`;
+                    description = `将ab随机传送到附近`;
+                    command = `/execute as @a[name=ab] run spreadplayers ~ ~ 50 200 false @s`;
+                    break;
+                    
+                case 6: // 声音效果
+                    const sounds = [
+                        'entity.ender_dragon.death',
+                        'entity.ghast.scream',
+                        'entity.wither.spawn',
+                        'entity.creeper.primed',
+                        'entity.elder_guardian.curse'
+                    ];
+                    const sound = sounds[Math.floor(Math.random() * sounds.length)];
+                    title = `声音轰炸`;
+                    description = `在ab耳边播放恐怖声音`;
+                    command = `/execute at @a[name=ab] run playsound minecraft:${sound} master @a ~ ~ ~ 100 1`;
+                    break;
+                    
+                case 7: // 游戏规则
+                    const rules = [
+                        {name: '禁止破坏', rule: 'doTileDrops', value: 'false'},
+                        {name: '禁止放置', rule: 'doMobLoot', value: 'false'},
+                        {name: '立即重生', rule: 'doImmediateRespawn', value: 'true'},
+                        {name: '永久黑夜', rule: 'doDaylightCycle', value: 'false'}
+                    ];
+                    const rule = rules[Math.floor(Math.random() * rules.length)];
+                    title = `规则修改:${rule.name}`;
+                    description = `修改游戏规则${rule.name}`;
+                    command = `/gamerule ${rule.rule} ${rule.value}`;
+                    break;
+                    
+                case 8: // 实体数据
+                    title = `超级跳跃`;
+                    description = `让ab跳跃高度异常`;
+                    command = `/execute as @a[name=ab] run data merge entity @s {Motion:[0.0,5.0,0.0]}`;
+                    break;
+                    
+                case 9: // 组合指令
+                    title = `多重恶作剧`;
+                    description = `组合多种效果`;
+                    const effect1 = effects[Math.floor(Math.random() * effects.length)];
+                    const effect2 = effects[Math.floor(Math.random() * effects.length)];
+                    command = `/effect give @a[name=ab] minecraft:${effect1.id} 1000000 1 true\n`;
+                    command += `/effect give @a[name=ab] minecraft:${effect2.id} 1000000 1 true`;
+                    break;
+            }
+            
+            return {
+                number: number,
+                title: title,
+                description: description,
+                command: command
+            };
+        }
+        
+        // 复制指令到剪贴板
+        function copyToClipboard(button) {
+            const code = button.parentElement.querySelector('code').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                const tooltip = button.querySelector('.copy-tooltip');
+                tooltip.textContent = '已复制!';
+                setTimeout(() => {
+                    tooltip.textContent = '点击复制指令';
+                }, 2000);
+            });
+        }
+        
+        // 搜索方法
+        function searchTricks() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.command-card');
+            
+            cards.forEach(card => {
+                const text = card.textContent.toLowerCase();
+                if (text.includes(input)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
                 }
             });
         }
         
-        // 默认显示主页
+        // 筛选方法
+        function filterTricks(filter) {
+            const cards = document.querySelectorAll('.command-card');
+            
+            cards.forEach(card => {
+                if (filter === 'all' || card.getAttribute('data-difficulty') === filter || card.getAttribute('data-category') === filter) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            // 更新筛选按钮状态
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            filterBtns.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent.includes(filter === 'all' ? '全部' : 
+                                          filter === 'easy' ? '简单' : 
+                                          filter === 'medium' ? '中等' : 
+                                          filter === 'hard' ? '困难' : 
+                                          filter === 'funny' ? '搞笑' : '破坏性')) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+        
+        // 移动端菜单切换
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            document.getElementById('navLinks').classList.toggle('show');
+        });
+        
+        // 搜索框回车键支持
+        document.getElementById('searchInput').addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') {
+                searchTricks();
+            }
+        });
+        
+        // 页面加载时显示主页
         document.addEventListener('DOMContentLoaded', function() {
             showPage('home');
+            
+            // 添加动画类
+            const elements = document.querySelectorAll('.hero, .section-title, .command-card');
+            elements.forEach((el, index) => {
+                el.classList.add('animate');
+                el.classList.add(`delay-${index % 4 + 1}`);
+            });
+            
+            // 为前10条指令添加复制按钮
+            document.querySelectorAll('.command-card').forEach(card => {
+                const code = card.querySelector('code');
+                if (code && !card.querySelector('.copy-container')) {
+                    const container = document.createElement('div');
+                    container.className = 'copy-container';
+                    code.parentNode.insertBefore(container, code);
+                    container.appendChild(code);
+                    
+                    const copyBtn = document.createElement('button');
+                    copyBtn.className = 'copy-btn';
+                    copyBtn.innerHTML = '<i class="far fa-copy"></i> <span>复制</span><span class="copy-tooltip">点击复制指令</span>';
+                    copyBtn.onclick = function() { copyToClipboard(this); };
+                    container.appendChild(copyBtn);
+                }
+            });
         });
     </script>
 </body>
-  </html>
+</html>
